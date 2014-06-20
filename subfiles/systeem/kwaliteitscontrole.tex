@@ -1,0 +1,49 @@
+\documentclass[../../main.tex]{subfiles}
+\begin{document}
+
+Door het gebruik van meerdere technieken voor het beschrijven van \'e\'en probleem, komen sommige elementen meermaals voor.\\
+\\
+\begin{ex}{ }
+De klassen die aan bod komen in de FSM zijn ook gedefinieerd in het klassendiagram. De events die overgangen bepalen zijn ook onderdeel van de OET.
+\end{ex}
+\\
+Het spreekt voor zich dat we moeten controleren of deze wel consistent zijn. Dit gebeurt aan de hand van kwaliteitscontrole.
+
+\subsection{Randvoorwaarden}
+De taal het domein en het publiek vormen de \imp{randvoorwaarden} die de kwaliteit van het model be\"invloeden.
+\begin{itemize}
+	\item \textbf{Relatie taal-domein}: Is de taal geschikt voor het neerschrijven van het model?
+	\item \textbf{Relatie taal-publiek}: Is de taal geschikt om te communiceren met het publiek?
+	\item \textbf{Relatie publiek-domein}: Het juiste publiek moet gekozen worden om daarop een model te baseren.
+\end{itemize}
+\subsection{Types van kwaliteitscontrole}
+Gegeven een domein, taal en publiek. We kunnen dan volgende types van kwaliteitscontrole onderscheiden:
+\begin{itemize}
+	\item \textbf{Syntax:} voldoet het madel aan de vormeisten opgelegd door de taal?
+	\item \textbf{Semantiek:} klopt de betekenis van het model?
+	\begin{itemize}
+		\item \textbf{Validiteit:} Klopt het?
+		\item \textbf{Volledigheid:} Is alles opgenomen?
+	\end{itemize}
+	\item \textbf{Pragmatiek:} kan het model begrepen worden door het publiek?
+\end{itemize}
+\subsection{Middelen tot kwaliteitscontrole}
+De meeste modelleringstools bieden een aantal hulpmiddelen voor de controle op kwaliteit:
+\subsubsection{Syntax}
+Meestal laat het gebruikte programma niet toe syntaxfouten te maken.
+\subsubsection{Semantiek}
+Voor semantische controle is het belangrijk dat de betekenis van de concepten in de modelleringstaal eenduidig is gemodelleerd. Het is van groot belang dat de uitspraken elkaar niet tegenspreken.
+\begin{itemize}
+	\item \textbf{Externe validiteit:} Controle op consistentie met het domein
+	\item \textbf{Interne validiteit:} Controle op consistentie met de reeds expliciete of afgeleide uitspraken
+\end{itemize}
+Er bestaan drie manieren waarop aan consistentiecontrole wordt gedaan:
+\begin{itemize}
+	\item Consistentie via \textbf{analyse}: Controleren aan de hand van een algoritme.
+	\item Consistentie via \textbf{monitoring}: Bij het toevoegen direct controleren of er geen tegenspraak is ontstaan.
+	\item Consistentie via \textbf{constructie} Bij het toeveogen direct afgeleide uitspraken vormen en toevoegen.
+\end{itemize}
+Dergelijke controle is enkel mogelijk als er voldoende duidelijke regels bestaan.
+\subsubsection{Pragmatiek}
+Voor de controle op pragmatiek bieden modelleringsprogramma's eveneens verschillende hulpmiddelen.
+\end{document}

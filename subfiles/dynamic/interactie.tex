@@ -1,0 +1,28 @@
+\documentclass[../../main.tex]{subfiles}
+\begin{document}
+Bij gebeurtenissen zijn doorgaans verschillende objecten betrokken. De objecten werken dan samen om een event af te werken.\\
+\\
+\begin{ex}{interactie tussen bedrijfsobjecten}
+In de SAI case is bij een inschrijving zowel een persoon bertrokken als object van de klasse inschrijving. Het toewijzen van de activiteit aan de klasse \textit{Inschrijving} zou niet tonen dat er ook op andere niveaus dingen moeten gebeuren:
+\begin{itemize}
+	\item Nagaan of er kan worden ingeschreven voor een activiteit
+	\item Nagaan of de persoon lidgeld heeft betaald
+\end{itemize}
+\end{ex}
+\\
+In UML kunnen we deze samenwerking modelleren aan de hand van \imp{collaboration diagrams}. Hierin wordt gemodelleerd welke boodschappen worden verstuurd en in welke volgorde.
+
+\subsection{Sequence Diagram}
+Het opstellen van een sequence diagram heeft als voordeel dat er vrij eenvoudig code uit kan worden gegenereerd. Het heeft anderzijds ook nadelen:
+\begin{itemize}
+	\item \textbf{Sterk object geori\"enteerd}: Beide technieken zijn implementatiegericht, meerbepaald op dat van objectgeori\"enteerd programmeren.
+	\item \textbf{Gedetailleerde beschrijving}: Dit is niet altijd voordelig
+	\item \textbf{Unidirectioneel}: De diagrammen tonen een visuele voorstelling van \imp{message passing}. Op softwareniveau is dit steeds binair en unidirectioneel, iets dat niet altijd overeenstemt met de equivalent in de re\"ele wereld.
+	\item \textbf{Vanuit user infterface}: Meestal vertrekken de interacties vanuit de gebruikersinterface, iets wat niet is opgenomen in het bedrijfsmodel.
+\end{itemize}
+De concrete volgorde is niet van primair belang bij het opstellen van een bedrijfsmodel. De nadruk ligt op welke gebeurtenissen deelnemen en waarom. De focus ligt dan ook op het identificeren van de bedrijfsregels.\\
+\\
+\begin{ex}{volgorde}
+Bij SAI is het niet belangrijk of er eerst wordt gecontroleerd of een persoon lid is en dan pas of er kan ingeschreven worden. Centraal staat wel dat beide dingen moeten gebeuren, maar niet in welke volgorde.
+\end{ex}
+\end{document}

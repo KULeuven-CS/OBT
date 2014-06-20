@@ -1,0 +1,57 @@
+\documentclass[../../main.tex]{subfiles}
+\begin{document}
+Een oplossing die we mits aanpassing kunnen toepassing in verschillende context wordt een \imp{pattern} genoemd.\\
+\\
+Het omzetten van een verband naar een tussenliggende klasse is een bewerking die herhaaldelijk wordt toegepast. Formeel zijn er verschillende definities, waarvan de meer concrete luidt:
+\begin{quote}
+	A pattern is the abstraction from a concrete form which keeps recurring in specific non-arbitrary contexts.
+\end{quote}
+Patterns zijn interessant omdat ze domeinkennis bevatten en de grondgedachte documenteren:
+\begin{itemize}
+	\item Hergebruiken wijsheid en ervaring
+	\item Bieden naast oplossing ook context
+	\item Ontleden de oplossing
+\end{itemize}
+\subsection{Soorten patterns}
+Patterns kunnen worden opgedeeld volgens de fasen van de systeemontwikkelign:
+\begin{itemize}
+	\item \textbf{Analyse:} Analyse-patterns \\
+	Pattern waarvan de vorm beschreven wordt met behulp van voorwaarden en concepten uit het applicatiedomein.
+	\item \textbf{Design:} Design-patterns \\
+	Pattern waarvan de vorm beschreven wordt software design constructies zoals objecten, klassen, overerving, ...
+	\item \textbf{Implementatie:} Code-patterns \\
+	Patters waarvan de vorm beschreven wordt met programmeertaalinstructies.
+\end{itemize}
+\noindent
+Patterns kunnen toegepast worden op verschillende domeinen.
+
+\subsection{Elementen van een pattern}
+Een pattern kan op verschillende manieren worden beschreven. Twee veelvoorkomende vormen zijn:
+\begin{itemize}
+	\item \textbf{Alexandrian Form}: doorlopende tekst
+	\item \textbf{Complien Form}: gestructureerd
+\end{itemize}
+De \imp{Complien Form} bestaat uit volgende elementen:
+\begin{itemize}
+	\item \textbf{Naam} referentie naar het pattern voor het gemakkelijk terugvinden.
+	\item \textbf{Probleem} Uiteenzetting van het probleem
+	\item \textbf{Krachten} Welke krachten en beperkingen spelen
+	\item \textbf{Oplossing} Statische relaties en dynamische regels beschrijven hoe de gewenste Uitkomst kan worden gerealiseerd
+	\item \textbf{Voorbeelden} Ter illustratie
+	\item \textbf{Resulteren contex} Configuratie van het systeem nadat het pattern is toegepast
+	\item \textbf{Rationale} Verklaring van de stappen of regels en verklaring waarom het werkt.
+	\item \textbf{Gerelateerde patterns} Andere patterns delen vaak dezelfde krachten.
+	\item \textbf{Gekende gebruiken} Voorkomen van het pattern binnen bestaande systemen
+\end{itemize}
+\subsection{Anti-patterns}
+Een pattern beschrijft een \textit{best practice}, maar met een \imp{anti-pattern} kan het tegengestelde bieden. Er zijn twee soorten:
+\begin{itemize}
+	\item Slechte oplossing beschrijven en de problemen die daarmee verbonden zijn
+	\item Slechte situatie voorkomen en hoe vandaar gewerkt kan worden naar een goede oplossing
+\end{itemize}
+Wanneer gerelateerde patterns aan elkaar worden gewoven vormt men een \imp{pattern language}. Deze vormen samen de oplossing voor een complex probleem.
+\subsection{Pattern mining en PLoP}
+Het proces van zoeken naar patterns om ze te documenteren wordt \imp{pattern-mining} genoemd.\\
+\\
+\imp{PLoP} of \imp{Pattern Languages of Programming}-conferenties zijn een mogelijkheid voor de auteur om hun patterns te laten beoordelen door collega's.
+\end{document}

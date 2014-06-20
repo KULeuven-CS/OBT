@@ -1,0 +1,226 @@
+\documentclass[../../main.tex]{subfiles}
+\begin{document}
+\imp{Requirements Engineering} is het proces waarbinnen all eisen voor het te ontwikkelen systeem worden ontdekt en gedocumenteerd. Het spreekt voor zich dat dit een essentieel onderdeel is van de systeemanalyse. We moeten onze gebruikers immers goed begrijpen.\\
+\\
+We vormen binnen \imp{RE} een \imp{ontologie}. Dit is het resultaat van een poging tot het maken van een uitputtend, strikt schema over een bepaald domein. In dit geval beslaat dat domein de vereisten van de eindgebruiker. Een ontologie verschilt van andere structuren door de aanwezigheid van regels en (al dan niet hi\"erarchische) ordening.\\
+\subsection{Formele respresentatie}
+De betekenis van de gebruikte termen moet liggen in de re\"ele wereld. De juistheid van formele asserties zijn hier immers van afhankelijk.\\
+\\
+\begin{ex}{terminologie}
+$\forall s \forall c (enrolled(s,c) \Rightarrow student(s) \wedge course(s))$\\
+Kunnen enkel studenten ingeschreven zijn voor een cursus? Wat is een student? Wat is een cursus?
+\end{ex}
+\begin{description}
+	\item[Designation] Het is nodig om de primitieven een betekenis toe te kennen door ze te defini\"eren met een duidelijke verklaring. Deze verklaring noemen we een \imp{designation}. Ze zijn essentieel en onderdeel van \textbf{elke} klasse.
+\end{description}
+Designations duiden op het verschil tussen definities en asserties.
+\begin{itemize}
+	\item Een \textbf{assertie} kan waar of vals zijn
+	\item Een \textbf{definitie} is (zoals de uitdrukking zegt) per definitie waar
+\end{itemize}
+\begin{ex}{definitie vs assertie}
+\begin{itemize}
+	\item $\forall s (student(s) \Leftrightarrow \exists c enrolled(s,c))$  \\
+	Veronderstel het bestaan van een \textit{designation} voor student en \textit{enrolled}
+	\item $student(s) \buildrel \text{def} \over = \exists c enrolled(s,c)$  \\
+	Vereist geen designation van \textit{student}, maar wel van \textit{enrolled}
+\end{itemize}
+De designation voor \textit{student} zou hier kunnen zijn: \textit{een student is een persoon die ingeschreven is aan een universiteit en nog niet is afgestudeerd of teruggetrokken.}
+\end{ex}
+\\
+Requirements hebben doorgaans het doel om een bepaalde doelstelling te bereiken. Aan de hand van designations beperken we het domein waarbinnen alternatieven kunnen worden gezocht. Bovendien zijn ze essentieel om de \imp{identiteit} te bepalen van een object.\\
+\\
+\begin{ex}{designations en identieit}
+Als ik een SMS-bericht krijg van mijn jongere zus, en ik stuur die door naar mijn oudere zus, hoeveel SMS-berichten zijn er dan ?
+\end{ex} \\
+Het bepalen van designations is \'e\'en van de taken van \imp{bedrijfsmodelleren}.
+\subsection{Impelementation Bias}
+Requirements moeten beschrijven \textbf{wat} de gewenste machine doet, maar niet \textbf{hoe} die dat doet.
+\begin{description}
+	\item Willen alleen statements over de omgeving
+	\item Statements over machine vorm een bias
+\end{description}
+Twee beschrijvingen volstaan:
+\begin{itemize}
+	\item \textbf{Indicative Mood}: beschrijving van hoe de omgeving is zonder de machine
+	\item \textbf{Optative Mood}: beschrijving van hoe we willen dat de omgeving is met het systeem
+\end{itemize}
+Het is bovendien belangrijk dat de specificaties beschrijven wat kan worden geobserveerd aan de hand van de interface tussen omgeving en machine. Ze moeten dus \imp{action-based} zijn en niet state-based. We kunnen acties verder opdelen:
+\begin{itemize}
+	\item \textbf{Controlling Actions}
+	\begin{itemize}
+		\item Environmental controlled
+		\item Machine controlled
+	\end{itemize}
+	\item \textbf{Sharing Actions}
+	\begin{itemize}
+		\item Shared: gedeeld tussen machine en omgeving
+		\item Unshared: enkel tot omgeving behoren
+	\end{itemize}
+\end{itemize}
+Het behoeft geen betoog dat de combinatie \textit{unshared} en \textit{machine controlled} niet mogelijk is. \\
+\\
+\begin{ex}{acties}
+\begin{itemize}
+	\item Environment controlled shared action
+	\begin{itemize}
+		\item Een student schrijft zich in voor een cursus aan de universiteit
+		\item Een boek in de bibliotheek wordt uitgeleend ($\neq$ meegenomen!)
+	\end{itemize}
+	\item Environment controlled unshared action:
+	\begin{itemize}
+		\item Een student volgt een hoorcollege van een cursus
+		\item Een boek wordt verplaatst in het boekenrek
+		\item Een boek wordt meegenomen zonder registratie van de uitlening
+	\end{itemize}
+	\item Machine controlled shared action:
+	\begin{itemize}
+		\item Een vraag voor het invullen van ISP wordt doorgestuurd.
+		\item Een reminder voor het binnenleveren van een boek wordt verzonden.
+	\end{itemize}
+\end{itemize}
+\end{ex}
+
+\subsection{Domeinkennis}
+Domeinkennis slaat de brug tussen requirements enerzijds en specificaties anderzijds.
+\begin{itemize}
+	\item \textbf{Requirements:} Optatieve eigenschappen die de wensen van de stakeholders vervullen wanneer aan de requirements is voldaan.
+	\item \textbf{Specificaties:} Optative eigenschappen die implementeerbaar zijn
+\end{itemize}
+Het is mogelijk dat requirements geen specificaties zijn. Ze worden dan via de domeinkennis omgezet naar specificaties:
+\begin{equation*}
+\boxed{S,K \vdash R}
+\end{equation*}
+\begin{ex}{requirements omzetten naar specificaties}
+\begin{itemize}
+	\item Studenten moeten hun ISP doorsturen voor 15/10 $\rightarrow$ \textbf{requirement}
+	\item Het automatisch doorsturen van default ISP voor de nog niet
+doorgestuurde  doorgestuurde ISPs ISPs op 15/10 $\rightarrow$ \textbf{specificatie}
+\end{itemize}
+\end{ex}
+
+\subsection{Conclusies}
+\begin{itemize}
+	\item Alle terminologie in RE zou een weerspiegeling moeten zijn van de omgeving waarbinnen de te bouwen machine zich bevindt.
+	\item Het is niet nuttig of wenselijk de te bouwen machine te beschrijven. We beschijven echter we de onmgeving:
+	\begin{itemize}
+		\item Zoals die is \textbf{zonder} de machine
+		\item Zoals die zou moeten zijn \textbf{met} de machine
+	\end{itemize}
+	\item Er moet onderscheid gemaakt worden tussen acties die
+	\begin{itemize}
+		\item \textbf{Gecontroleerd} worden door de omgeving
+		\item \textbf{Gedeeld} worden door de machine
+	\end{itemize}
+	\item De primaire rol van domeinkennis in RE is het ondersteunen van de \textbf{verfijning} van vereisten tot specificaties
+\end{itemize}
+
+\subsection{Tekortkomingen}
+Bovenstaande ontologie, ontwikkeld door Zave en Jackson, hebben enkele tekortkomingen:
+\begin{itemize}
+	\item Geen ruimte voor \textbf{gedeeltelijke} invulling van requirements
+	\item Geen specificaties definieerbaar
+	\item Optimaliteit en non-functionele requirements komen niet aan bod
+\end{itemize}
+Daarom werd de \imp{CORE ontologie} opgesteld. Deze vertrekt vanuit de gedachte dat elke requirement in essentie een \imp{speech act} (taalhandeling) is van de stakeholder aan de ingenieur. \\
+\\
+Deze speech acts kunnen van het volgende type zijn:
+\begin{itemize}
+	\item \textbf{Belief (B)}: Leiden tot domeinaannames
+	\item \textbf{Desire (D)}: Leiden tot requirements
+	\item \textbf{Intention (I)}: Leiden tot specifications
+	\item \textbf{Attitude (A)}: Komt niet aan bod (!)
+\end{itemize}
+Speech acts kunnen volgende soorten \imp{illocutary forces} hebben:
+\begin{itemize}
+	\item \textbf{Assertives (B)}: Assert a proposition that the speaker believes true
+	\item \textbf{Directives (D)}: Convey a proposition that the speaker wants to see become true
+	\item \textbf{Commissives (I)}: States what the speaker intends to make a proposition
+	\item \textbf{Expressives (A)}: Convey an emotion/attitude about speaker or hearer
+	\item \textbf{Declarations (B)}: By the very act of being stated make a proposition true
+	\item \textbf{Representative declarations (B)}: Recognize the truth of a proposition that has been made true by a declaration true
+\end{itemize}
+De combinatie van het type speech act met de illocutionary force ervan geeft ons een basis om de content van een speech act te indentificeren voor RE.
+\begin{itemize}
+	\item \textbf{Beliefs}\\
+	\begin{itemize}
+		\item Assertives
+		\\\\
+		\begin{ex}{assertives}
+		Studenten moeten hun studentenkaart tonen vooraleer ze hun examenattest krijgen.
+		\end{ex}
+		\item Declarations
+		\\\\
+		\begin{ex}{declarations}
+		Wie 10 of meer behaalt is geslaagd.
+		\end{ex}
+		\item Representative declarations
+		\\\\
+		\begin{ex}{representative declarations}
+		De examencommissie heeft bepaald dat student X geslaagd is met onderscheiding
+		\end{ex}
+	\end{itemize}
+	$\rightarrow$ Catalogiseren we als \textbf{assumpties}.
+	\item \textbf{Desires}
+	\begin{itemize}
+		\item Indien uitdrukking als \textbf{directive}
+		\item Maar \textbf{geen} uitspraken over kwaliteiten \\
+		\\
+		\begin{ex}{desires}
+		Nadat de bevestiging van de betaling is binnengekomen, moet de boeking bevestigd worden.
+		\end{ex}
+	\end{itemize}
+	\item \textbf{Desires}
+	\begin{itemize}
+		\item Indien uitdrukking als \textbf{directive}
+		\item Maar \textbf{wel} uitspraken over kwaliteiten \\
+		\\
+		\begin{ex}{desires}
+		Het moet mogelijk zijn een vlucht te boeken via het
+doorlopen van minder dan 5 schermen.
+		\end{ex}
+	\end{itemize}
+	$\rightarrow$ Catalogiseren we als \textbf{quality constraints}.
+	\item \textbf{Desires}
+	\begin{itemize}
+		\item \textbf{Directive} waarbij  kwaliteiten en constraints op kwaliteiten
+		\item Maar definitie is subjectief of niet afgelijnd.\\
+		\\
+		\begin{ex}{desires}
+		Het moet mogelijk zijn een vlucht te boeken via een
+gebruiksvriendelijk systeem.
+		\end{ex}
+	\end{itemize}
+	$\rightarrow$ Catalogiseren we als \textbf{soft goals}.
+	\item \textbf{Intents}
+	\begin{itemize}
+		\item Uitgedrukt als commisive\\
+		\item Beschrijft de manier waarop (= specificatie)\\
+	\end{itemize}
+	$\rightarrow$ Catalogiseren we als \textbf{plan}.
+	\item \textbf{Attitudes}
+	\begin{itemize}
+		\item Uitgedrukt als expressives
+		\item Waarbij een voorkeur wordt uitgedrukt mbt de
+voorgaande elementen
+	\end{itemize}
+	$\rightarrow$ Catalogiseren we als \textbf{Optionaliteiten en Preferenties}.
+\end{itemize}
+
+\subsection{Herdefinitie van het RE probleem}
+De oorspronkelijke definitie was
+\begin{equation*}
+\boxed{S,K \vdash R}
+\end{equation*}
+De requirements moesten verfijnd worden tot implementeerbare specificaties, zodat de combinatie van assumpties ($K$) en specificaties ($S$) voldoen aan de requirements ($R$).\\
+\\
+De definitie wordt nu:
+\begin{equation*}
+\boxed{K^*,P^* \vdash G^*,Q^*,A^{>}}
+\end{equation*}
+We kiezen tussen de alternatieve assumptie ($K$) en de alternatieve specificatie ($P$) een combinatie $K,P$ zodat:
+\begin{itemize}
+	\item Preferenties $A^{>}$ maximaliseren
+	\item Dat voldaan is aan de verplichte goals ($G$) en quality constraints ($Q$), en aan zoveel mogelijk optionele Goals.
+\end{itemize}
+\end{document}

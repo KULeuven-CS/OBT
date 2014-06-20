@@ -1,0 +1,96 @@
+\documentclass[../../main.tex]{subfiles}
+\begin{document}
+
+Het vinden van de juiste klassen en verbanden is een van de moeilijkste elementen van modelleren. Verschillende technieken maken het ons gemakkelijker.
+\subsection{Lagen}
+Klassen worden georganiseerd in \imp{lagen}. Binnen dezelfde laag kan er gebruik gemaakt worden van diensten van onderliggende lagen. Wijzigingen propageren zich dus enkel opwaarts. De onderste lagen zijn dan ook de meest stabiele.\\
+\\
+Typische lagen:
+\begin{itemize}
+	\item \textbf{User Interface} \\
+	\\
+	\begin{ex}{gebruikersinterface}
+	Knoppen, velden
+	\end{ex}
+	\item \textbf{Applicatielogica}\\
+	\\
+	\begin{ex}{applicatielogica}
+	Berekenen van de datum
+	\end{ex}
+	\item \textbf{Bedrijfsobjecten}
+	\begin{itemize}
+		\item Logica\\
+		\\
+		\begin{ex}{logica}
+		Regels in verband met het verlengen van de uitleentermijn
+		\end{ex}
+		\item Data\\
+		\\
+		\begin{ex}{data}
+		Titel van een boek
+		\end{ex}
+	\end{itemize}
+\end{itemize}
+We zien dat de lagen de volgorde van variabiliteit volgen.
+
+\subsection{Soorten specificaties: Zachman}
+Voor een informatiesysteem kan men verschillende plannen maken. Het \imp{Zachman framework} is een classificatieschema voor complexe informatiesystemen.
+\begin{itemize}
+	\item Laat toe onderdelen te bestuderen zonder context uit het oog te verliezen
+	\item Biedt overzicht van complex systeem
+	\item Combineert twee perspectieven:
+	\begin{itemize}
+		\item Organisatorisch perspectief
+		\item Informatiesysteem perspectief
+	\end{itemize}
+	Laat toe de bedrijfs- en informatiestrategie op elkaar af te stemmen
+\end{itemize}
+Voor de juiste indeling, zie schema in de cursus op pagina 51.\\
+\subsubsection{Rij 2: Het enterprise-model perfectief}
+Dit perspectief stemt overeen met dat van de \textbf{eigenaar} of \textbf{opdrachtgever}. Dit model geeft een overzicht van:
+\begin{itemize}
+	\item Werking van de organisatie
+	\item Businessobjecten
+	\item Geldende regelgeving
+\end{itemize}
+Omdat dit deel zich bezig houdt met het beschrijven van de \textit{business}, wordt dit ook vaak \imp{business modelling} genoemd.\\
+\\
+\begin{ex}{kul}
+Het onderwijs- en examenreglement vormt een onvolledige en ongestructureerde beschrijving van de \textit{business} van de KUL.
+\end{ex}
+\subsubsection{Rij 3: Informatiesysteem-model perspectief}
+Dit perspectief stemt overeen met dat van de \textbf{ontwerper}. Deze heeft kennis van zowel de \textbf{bedrijfsaspecten} als de \textbf{technische aspecten}. \\
+\\
+Hier wordt de gewenste functionaliteit bepaalt, rekening houdend met de beperkingen van de omgeving waarin het systeem operationeel is.
+
+\subsection{Doel van bedrijfsmodellering}
+Tot dusver bekeken we het perspectief van de opdrachtgever: het lastenboek. Dit omvat de bovenste drie lagen van het framework.
+\begin{itemize}
+	\item Bepalen scope
+	\item Vastleggen bedrijfsregels
+	\item Bepalen van de informatiesysteemondersteuning
+\end{itemize}
+De oefeningen besloegen slechts het enterprise model (rij 2).
+
+\subsection{Het bedrijfsmodel}
+Het bedrijfsmodel...
+\begin{itemize}
+	\item \textbf{Als kernmodel} \\
+	Het bedrijfsmodel definieert de bedrijfsobjecten en legt tevens de bedrijfslogica vast. Dit vormt de kern van het informatiesysteem.
+	\item \textbf{Als middel tot alignering onder de gebruikers} \\
+	Het is een gestructureerd en meer formele voorstelling van alle bedrijfsconcepten, -regels en -processen. Het vormt een gemeenschappelijke taal onder de betrokkenen.
+	\item \textbf{Als middel tot een robuust systeem} \\
+	Het bedrijfsmodel beschrijft naast het probleemdomein ook de kern van de oplossing. Een beter begrip leidt tot betere software. (zie fabel bootverhuur)
+\end{itemize}
+\subsection{Het enterprise model}
+Zodra duidelijk is welke specificaties betrekking hebben met het bedrijfsmodel, kunnen we de klassendefinities opstellen. \\
+\\
+Dit proces is normaal al meermaals aan bod is gekomen. Wie het toch nog wil herhalen kan het nalezen op pagina 56 van de cursus.\\
+\\
+Idealiter beschrijft het bedrijfsmodel ook de dynamische aspecten. Hiervoor zijn twee invalshoeken:
+\begin{itemize}
+	\item Gedragsaspecten per business beschrijven door middel van een  \imp{FSM}.
+	\item Opstellen van bedrijfsmodellen: dit is een keten van activiteiten die wordt ontplooid met het oog op het realiseren van de bedrijfsdoelstellingen.
+\end{itemize}
+Beide processen zijn complementair aan elkaar.
+\end{document}

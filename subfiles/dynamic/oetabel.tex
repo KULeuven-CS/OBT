@@ -1,0 +1,78 @@
+\documentclass[../../main.tex]{subfiles}
+\begin{document}
+Om niet te vroeg te focussen op de juiste interactiescenario's modelleren we de deelnemende objecten per ge\"identificeerde bedrijfsgebeurtenis. Hiervoor gebruiken we een tabel waarbij elke cel zegt aan welke voorwaarden voldaan moet zijn.
+\begin{center}
+\begin{tabular}{|l|l|c|c|c|}
+\hline
+• & • & \textit{Klasse} & \textit{Klasse} & \textit{Klasse} \\
+\hline
+\textit{Gebeurtenis} & Voorwaarde & • & • & • \\
+\hline
+• & Actie & • & • & • \\
+\hline
+\textit{Gebeurtenis} & Voorwaarde & • & • & • \\
+\hline
+• & Actie & • & • & • \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{De object-event tabel}
+We onderzoeken welke bedrijfsobjecten betrokken zijn en wat het effect is van de gebeurtenis. De tabel bestaat uit:
+\begin{itemize}
+	\item Rij per gebeurtenistype
+	\item Kolom per bedrijfsobjecttype
+\end{itemize}
+Een cel heeft volgende markeringen:
+\begin{itemize}
+	\item \textbf{C}: Creator
+	\item \textbf{M}: Modifier
+	\item \textbf{E}: Ending-event
+\end{itemize}
+Wanneer een cel gemarkeerd is, wil dit zeggen dat het object voorzien wordt van een procedure. Deze procedure bepaalt wat het effect is van een gebeurtenis op de objecten van dit type. Wanneer de gebeurtenis optreedt, worden \textbf{alle} verbonden procedures uitgevoerd.\\
+\\
+De tabel inventariseert alle mogelijke plaatse waar bedrijfsregels kunnen worden gespecificeerd. Wanneer blijkt dat bepaalde gemarkeerde cellen hier toch geen aanleiding tot geven, kunnen de nodige optimalisaties worden doorgevoerd bij de de implementatie.\\
+\\
+Het belangrijkste voordeel van deze tabel is dat alle gebeurtenissen als zelfstandig kunnen worden beschouwd. Dit wil zeggen los van de bedrijfsobjecten.
+
+\subsection{Validatie}
+Tabellen of matrices zoals de OET zijn voornamelijk bekend als \imp{CRUD}-matrices. Er werden een aantal regels ontwikkeling om een OET te valideren op interne consistentie. Dit gebeurt aan de hand van FSMs en het klassendiagram. \\
+\\
+Bepaalde regels zijn intuitief:
+\begin{itemize}
+	\item Per objecttype is er minstens \'e\'en gebeurtenis die deze cre\"eert
+	\item Per objecttype is er minstens \'e\'en die deze be\"eindigt
+\end{itemize}
+In volgende paragraaf bekijken we de regels voor het nagaan van consistentie. De overige regels vallen buiten de scope van deze cursus.
+
+\subsection{Inventariseren bedrijfsgebeurtenissen}
+Men kan op twee manieren bedrijfsgebeurtenissen inventariseren:
+\begin{enumerate}
+	\item Kijken naar de gebeurtenissen die horen bij creatie, wijziging en be\"eindiging van objecten
+	\item Kijken naar de bedrijfsprocessen
+\end{enumerate}
+\begin{ex}{bedrijfsprocessen als basis inventaris}
+Bij het verkoopsproces vinden we een hele lijst aan gebeurtenissen: cre\"eren van een klant, van een order en van een orderregel. Ondertekenen van een order, het leveren en het factureren. Voor elke gebeurtenis kan men nagaan welke objecten erbij betrokken zijn.
+\end{ex}
+\\
+Wanneer men gebeurtenissen identificeert, moeten de bedrijfsregels getoetst worden aan volgende criteria:
+\begin{itemize}
+	\item \textbf{Atomiciteit} \\
+	Ofwel vind de gebeurtenis volledig plaats, ofwel helemaal niet. Een gebeurtenis die kan onderbroken worden is geen goede bedrijfsgebeurtenis. \\\\
+	\begin{ex}{niet atomaire gebeurtenis}
+	Het registreren van een  order is niet atomair. Het kan worden opgesplitst in het aanmaken van een nieuw order, het toevoegen van het product aan het order etc.
+	\end{ex}
+	\item \textbf{Relevantie} \\
+	Gebeurtenissen die relevant zijn op software-niveau maar niet op modelleringsniveau komen niet in aanmerking.\\\\
+	\begin{ex}{niet relevante gebeurtenis}
+	Het afhalen van geld is een relevante gebeurtenis. Het invoer van de kaart, intikken van de code zijn dat niet.
+	\end{ex}
+\end{itemize}
+Het voordeel van te werken met \imp{bedrijfsgebeurtenissen} is dat het ge\"implementeerd kan worden als een zelfstandige component. Die vormt dan een uniek aanspreekpunt om de bedrijfsobjecten te manipuleren. In plaats van berichten naar de objecten te sturen, kan een service nu de uitvoering van een gebeurtenis activeren en en zorgt het overeenkomstige gebeurtenisobject voor de afhandeling. Dit is vooral handig wanneer dezelfde functionaliteit onder verschillende vormen wordt aangeboden.\\
+\\
+\begin{ex}{zelfde functionaliteit onder verschillende vormen}
+Er zijn verschillende manieren om geld af te halen. Dit kan via het loket, een ATM of via de proton kaart. In een event-loos systeem moet voor elke dienst message-passing worden ontwikkeld.
+\end{ex}
+
+\end{document}

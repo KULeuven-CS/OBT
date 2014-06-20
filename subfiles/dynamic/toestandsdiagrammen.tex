@@ -1,0 +1,132 @@
+\documentclass[../../main.tex]{subfiles}
+\begin{document}
+Toestandsdiagrammen vinden hun oorsprong in de theorie van \imp{eindige toestandsautomaten}.
+\subsection{Concepten}
+\begin{description}
+	\item[Toestand] Een toestand definieert een stabiele toestand waarin een object zich kan bevinden. Het wordt weergegeven door een rechthoek met afgeronde randen.
+	\begin{itemize}
+		\item \textbf{Begintoestand}: De toestand die vooraf gaat aan de creatie van een object en wordt weergegeven als een zwarte cirkel
+		\item \textbf{Eindtoestand}: Toestand waarin elk object belandt bij het beeindigen van zijn levenscyclus. Dit wordt weergegeven zwarte gevulde cirkels met rand.
+	\end{itemize}
+	\item[Transitie] Een transitie is een toestandsovergang, tussen twee verschillende toestanden of tussen een toestand en zichzelf.
+	\item[Activiteit] Een activiteit is een operatie die uitgevoerd wordt binnen de tijd dat een object zich in \'e\'en toestand bevindt. Ze stopt vanzelf of wanneer er een overgang naar de volgende toestand is.
+	\begin{itemize}
+		\item Binnen de toestand achter het label "do/ "
+	\end{itemize}
+	\item[Guard] Een voorwaarde die aangeeft of een transitie plaats kan vinden. Het resultaat is een booleaanse waarde.
+	\begin{itemize}
+		\item Expressie tussen vierkante haken
+	\end{itemize}
+	\item[Actie of Event] Atomaire operatie (kost logisch gezien geen tijd). Ofwel wordt de volledige operatie uitgevoerd, ofwel niet.
+	\begin{itemize}
+		\item \textit{event} /\^{}  \textit{actie} bij  boven de overgangspijl
+	\end{itemize}
+\end{description}
+
+\subsection{Event}
+Een transitie wordt veroorzaak door een event. Dit zullen in het geval van business objecten steeds re\"ele-wereldgebeurtenissen zijn. Zoals reeds gezegd kost een event geen tijd.\\
+\\
+\begin{ex}{event}
+Het afhalen van geld bij een bank neemt enige tijd in beslag.  De overgang zou in dit geval kunnen zijn dat de klant in \textit{het rood} komt te staan. We moeten hier abstractie maken van de tijdsduur.
+\end{ex}
+\\
+Wanneer het niet mogelijk is om het tijdsbeslag te abstraheren kunnen we het begin en einde van het event apart modelleren. \\
+\\
+\begin{ex}{opdelen event}
+Een speeltijd op een school kunnen we modelleren als event \textit{StartSpeeltijd} en \textit{StopSpeeltijd}.
+\end{ex}
+\\
+Een speciaal geval is het \imp{lege event}, deze wordt in automatentheorie aangegeven met het "\&"-symbool en veroorzaak automatisch een overgang.\\
+\\
+Met toestandsautomaten kunnen we de klassieke voorstellen aan de hand van:
+\begin{itemize}
+	\item Sequentie
+	\item Keuze
+	\item Iteratie
+\end{itemize}
+
+\subsection{Kwaliteitscontrole}
+Het concept werd zoals eerder gezegd al uitgebreid bestudeerd. We zullen deze theorie gebruiken om de kwaliteit van onze toestandsautomaten te onderzoeken. Dit wordt standaard niet omvat in UML. \\
+\\
+We wensen dat onze automaten:
+\begin{itemize}
+	\item Vrij zijn van onbereikbare toestanden (voor- en achterwaarts)
+	\item Deterministisch zijn
+\end{itemize}
+
+\subsection{Toestandsautomaten}
+We definie\"eren een \imp{eindige toestandsautomaat} of \imp{finite state machine} (FSM) als een tupel:
+\begin{equation}
+\boxed{\text{M} =  (\Sigma,Q,\Delta,q_0,F)}
+\end{equation}
+\begin{itemize}
+	\item $\Sigma$ de verzameling events
+	\item $Q$ de verzameling toestanden
+	\item $\Delta$ De transitiefunctie $\Delta: Q \times \Sigma \rightarrow Q: (q,a) \mapsto q'$
+	\item $q_0$ De initi\"ele toestand
+	\item $F \subseteq Q$  De verzameling eindtoestanden
+\end{itemize}
+\subsection{Onbereikbare toestanden}
+\subsubsection{Voorwaartse onbereikbaarheid}
+Een toestandsautomaat $\text{M} =  (\Sigma,Q,\Delta,q_0,F)$ heeft geen \imp{voorwaarts onbereikbare toestanden} indien elke toestand vanuit de begintoestand bereikbaar is.\\
+\\
+Wiskundig betekent dit:
+\begin{equation*}
+	\forall q \in Q, \exists a_1, a_2,..., a_n \in \Sigma, \exists q_1, q_2, ..., q_{n-1} \in Q
+\end{equation*}
+zodat
+\begin{equation*}
+	\Delta(q,a_1) = q_1, \Delta(q_1,a_2) = q_2 , ..., \Delta(q_{n-1},a_n) = q
+\end{equation*}
+
+\subsubsection{Achterwaartse onbereikbaarheid}
+Een toestandsautomaat $\text{M} =  (\Sigma,Q,\Delta,q_0,F)$ heeft geen \imp{achterwaarts onbereikbare toestanden} indien vanuit elke toestand een eindtoestand kan bereikt worden.\\
+\\
+Wiskundig betekent dit:
+\begin{equation*}
+	\forall q \in Q, \exists a_1, a_2,..., a_n \in \Sigma, \exists q_1, q_2, ..., q_{n-1} \in Q, \exists q_f \in F
+\end{equation*}
+zodat
+\begin{equation*}
+	\Delta(q_0,a_1) = q_1, \Delta(q_1,a_2) = q_2 , ..., \Delta(q_{n-1},a_n) = q_f
+\end{equation*}
+
+\subsection{Determinisme}
+Een toestandsautomaat $\text{M} =  (\Sigma,Q,\Delta,q_0,F)$ is deterministisch indien er gegeven een bepaalde toestand voor elk event maximum \'e\'en volgende toestand mogelijk is.\\
+\\
+Wiskundig betekent dit:
+\begin{equation*}
+	\forall q \in Q, \forall a \in \Sigma : \neg ( \exists q_1, q_2 \in Q: \Delta (q,a) = q_1 en \Delta (q,a) = q_2 )
+\end{equation*}
+Een toestandsautomaat die niet aan deze voorwaarde voldoet wordt een \imp{niet-deterministische automaat} genoemd. Wiskundig valt aan te tonen dat elke niet-deterministische automaat een deterministische equivalent heeft. Dit is eventueel mogelijk door het gebruik van \imp{guards}.
+\subsection{Minimale automaten}
+Automaten die geen lege transacties hebben worden \imp{empty-free} genoemd. Opnieuw is aantoonbaar dat elke automaat met lege transacties omgevormd kan worden tot een equivalent zonder.
+
+\begin{description}
+	\item[Minimale automaat] Een automaat die zowel empty-free is als deterministisch.
+\end{description}
+
+\subsection{Gestructureerde automaten}
+Grote automaten worden nogal eenvoudig chaotisch. Door gebruik te makken van horizontale of verticale assen als indicatoren van de voortgang kunnen we dergelijke automaten terug overzichtelijk maken.
+\begin{itemize}
+	\item As stelt voortgang van begin naar eindtoestand voor
+	\item Begin- en eindtoestand bevinden zich op uiterste lagen
+	\item Lussen vallen steeds binnen \'e\'en laag
+\end{itemize}
+Dit proces wordt \imp{stratificatie} genoemd. Het is mogelijk elke FSM te stratificeren. Hier wordt aangeraden de voorbeelden in de cursus te bekijken.
+\subsection{Parallelle automaten}
+Wanneer verschillende groepen van events (binnen een klasse) volledig onafhankelijk van elkaar zijn, kunnen we gebruik maken van \imp{parallellisme}. Dit verhindert de explosie van toestanden. \\
+\\
+\begin{ex}{parallellisme}
+Beschouw een filmster en de events die diens professioneel en persoonlijk leven bepalen. Veronderstel dat kan worden aangeworven (en afgedankt) en kan trouwen (en scheiden). Samen voorgesteld leidt dit tot $2 \times 2$ toestanden:
+\begin{itemize}
+	\item single, zonder contract
+	\item single, met contract
+	\item gehuwd, zonder contract
+	\item gehuwd, met contract
+\end{itemize}
+Het vereist geen betoog dat twee automaten dit veel duidelijker weergeven dan \'e\'en alomvattende.
+\end{ex}
+\\
+In UML zouden we gebruik kunnen maken van de \imp{fork} en \imp{join} constructies. Voor meer informatie zie de website van de OMG.
+\end{document}

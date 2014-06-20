@@ -1,0 +1,117 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+Het neerschrijven van het model of het lastenboek kan op verschillende manieren.
+\begin{itemize}
+	\item \textbf{Natuurlijke taal:} Vaak enkel voor de eerste inventaris van de wensen van de gebruiker. Eenvoudig maar niet effici\"ent.
+	\item \textbf{UML:} Industriestandaard voor het beschrijven van een informatiesysteem. In eerste plaats bedoeld voor het beschrijven van de oplossing, maar kunnen ook het probleemdomein beschrijven.
+\end{itemize}
+Om de gebruiker ook in staat te stellen het model te begrijpen, beperken we ons tot een subset van de beschikbare technieken. We laten wat bedoeld is voor de technische implementatie.\\
+\\
+We zullen de vertaling maken naar \imp{algebra}. We gebruiken het wiskundig perspectief om
+\begin{itemize}
+	\item \textbf{Betekenis} van het schema te defini\"eren
+	\item \textbf{Abstract denken} te stimuleren
+	\item Modellen te \textbf{valideren}
+\end{itemize}
+
+\subsection{Terminologie}
+\begin{description}
+	\item[Modelleringstaal] Geheel van technieken bedoeld voor het neerschrijven van (software-) specificaties. \\
+	(Bijvoorbeeld \textbf{UML})
+	\item[Modelleringstechniek] Samenhangend geheel van symbolen en regels die toelaten een bepaald aspect van de software te modelleren. \\
+	(Bijvoorbeeld \imp{UML Class Diagram}, \imp{ER Modelling}, \imp{Data Flow Diagram})
+	\item[Diagramma, schema of model] Model of tekening opgesteld volgens een bepaalde voorafbepaalde  techniek. \\
+	(Bijvoorbeeld \imp{UML klassendiagram})
+\end{description}
+\subsection{Klassen en objecten}
+\begin{itemize}
+	\item \textbf{Wiskundige voorstelling:} We noteren de verzameling als een \imp{ovaal}. De elementen in de verzameling vormen \imp{punten} in deze ovaal.
+	\item \textbf{UML:} Verzamelingen worden voorgesteld als \imp{rechthoeken} met daarin de naam van de verzameling. We noemen de verzameling een \imp{klasse} en de elementen \imp{objecten}.
+\end{itemize}
+
+\subsection{Attributen}
+Bij het defini\"eren van een verzameling, beschrijven we de elementen van die verzameling aan de hand van hun eigenschappen. Deze worden de \imp{attributen} van het object genoemd.
+\begin{itemize}
+	\item Eigenschappen die object altijd bezit
+	\item Attribuutnaam ligt vast
+	\item Waarde kan eventueel veranderen
+\end{itemize}
+\section{Associaties}
+\subsection{Principe}
+Elementen van een verzameling kunnen een \imp{verband} hebben met andere elementen uit een andere verzameling.
+\subsubsection{Wiskundige benadering}
+We kunnen de verbanden defini\"eren als afbeeldingen tussen verzamelingen.
+\begin{description}
+	\item[Afbeelding]  Een afbeelding $f : A \rightarrow B$ is een functie die een element uit de verzameling van $A$ afbeeldt op elementen van verzameling $B$. $A$ is het \imp{domein} van de afbeelding $f$ en $B$ is het \imp{beeld} van de afbeelding $f$.
+\end{description}
+
+\begin{equation*}
+f: A \rightarrow B:a \mapsto f(a) \textrm{met } a \in A \textrm{ en } f(a) \subseteq B
+\end{equation*}
+Het verband kan ook in de omgekeerde richting worden beschouwd. Vaak heeft het verband in elke richting een eigen naam.
+\subsubsection{UML benadering}
+We noemen het verband tussen twee of meer klassen een \imp{associatie}. Deze wordt weergegeven als een \imp{lijn} met de naam van het verband naast de lijn geschreven. Wanneer het verband in beide richting een naam krijgt, noemt men dit de \imp{rollen} van de associatie.
+\\\\
+\begin{ex}{rollen}
+Veronderstel twee klassen: werknemer en departement. \\
+$\rightarrow$ : Werknemer \textit{werkt in} departement \\
+$\leftarrow$ : Departement \textit{heeft} werknemer
+\end{ex}
+\subsection{Karakter van een verband}
+\subsubsection{Verplicht/optioneel karakter (Wiskunde)}
+Een verband kan ofwel verplicht of optioneel zijn.
+\begin{itemize}
+	\item \textbf{Verplicht:} Een afbeelding is verplicht indien elk element van $A$ verplicht een beeld in $B$ heeft. \\
+	\begin{equation*}
+	\boxed{f:A \rightarrow B \textrm{ is verplicht} \Leftrightarrow \forall a \in A:f(a) \neq \emptyset}
+	\end{equation*}
+	\item \textbf{Optioneel:} Een afbeelding is optioneel indien niet elk element van $A$ verplicht een element in $B$ heeft.
+\end{itemize}
+Het \imp{verplicht} of \imp{optioneel} karakter wordt gedefinieerd voor elk object op elk moment. Deze verandert \textbf{niet} doorheen de tijd. De interpretatie die hier gegeven wordt aan een verplicht verband wordt in de temporele logica gemodelleerd met de $\forall$-kwantor.
+\\
+\\
+UML maakt geen gebruik van temporele kwantoren. Een verplicht verband moet \textbf{altijd} geldig zijn. Uitspraken met de $\exists$-kwantor zijn niet mogelijk.
+\subsubsection{kardinaliteit van een verband (UML)}
+\begin{description}
+	\item[kardinaliteit] De kardinaliteit van een verband $f$ zegt wat het maximum aantal elementen is waarop een element uit het domein wordt afgebeeld door $f$.
+\end{description}
+
+\begin{itemize}
+	\item \textbf{kardinaliteit maximum 1} \\
+	Een verband $f: A \rightarrow B$ heeft een \imp{carinaliteit van maximum 1} indien elke $a \in A$ op maximum \'e\'en $b \in B$ wordt afbeeld.\\
+	\begin{equation*}
+	\boxed{f:A \rightarrow B \textrm{ heeft een kardinaliteit van maximum 1} \Leftrightarrow \forall a \in A:|f(a)| \leq 1}
+	\end{equation*}
+	\item \textbf{kardinaliteit many} \\
+	Een verband $f: A \rightarrow B$ heeft een \imp{carinaliteit van many} indien elke $a \in A$ mogelijks op meerdere elementen $b_i \in B$ wordt afbeeld.\\
+	\begin{equation*}
+	\boxed{f:A \rightarrow B \textrm{ heeft een kardinaliteit van many} \Leftrightarrow \forall a \in A:|f(a)| \in \mathbb{N}}
+	\end{equation*}
+\end{itemize}
+
+Het verplicht of optioneel karakter wordt dan als volgt weergegeven:
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+$f:A \rightarrow B$ & & Schrijf langs $f$, aan de kant van $B$ \\ \hline
+$f$ is optioneel & $f$ heeft carinaliteit 1 & [0..1] \\
+& $|f(a)| \leq 1$ & \\ \hline
+$f$ is optioneel & $f$ heeft carinaliteit many & [0..*] (afgekort *) \\ \hline \hline
+$f$ is verplicht & $f$ heeft carinaliteit 1 & [1..1] (afgekort 1)\\
+$|f(a) > 0|$ & $|f(a)| \leq 1$ &  $|f(a)|=1$ \\ \hline
+$f$ is verplicht & f heeft carinaliteit many & [1..*]  \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Navigeren over meerdere associaties}
+Waneer het beeld van het ene verband $f$ gelijk is aan het domein van een ander verband $g$ kunnen we verbanden \imp{combineren} tot \'e\'en verband $g \bullet f$
+\begin{center}
+$f:A \rightarrow B$ en $g:B \rightarrow C$ dan geldt $g \bullet f: A \rightarrow C: a \mapsto g(f(a))$
+\end{center}
+Het optioneel of verplicht karakter en de kardinaliteit van het \imp{samengesteld verband} kunnen afgeleid worden uit de eigenschappen van de deelverbanden.\\\\
+\noindent
+\begin{ex}{samengesteld verband}
+Veronderstel dat $f$ kardinaliteit 1 heeft en $g$ kardinaliteit many. \\
+Dan geldt $\forall a \in A$ dat er maximum \'e\'en element zit in $f(a)$, waarbij $f(a) \subseteq B$. Voor elk element $b \in B$ en dus ook $b \in f(a)$ geldt dat er mogelijks meerdere elementen zijn in $g(b)$. We kunnen besluiten dat er in $g(f(a)) = (g \bullet f)(a)$ ook mogelijks meerdere elementen zitten.
+\end{ex}
+\end{document}

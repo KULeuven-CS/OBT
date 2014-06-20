@@ -1,0 +1,109 @@
+\documentclass[oneside,11pt]{book}
+% Packages
+\usepackage[dutch]{babel}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{makeidx}
+\usepackage{multicol}
+\usepackage{bold-extra}
+\usepackage{graphicx}
+\usepackage{subfiles}
+\usepackage{titling}
+\usepackage[tmargin=3cm, bmargin=3cm, lmargin=2.5cm, rmargin=2.5cm]{geometry}
+
+\graphicspath{{./figures/}{../figures/}}
+\makeindex
+
+\title{Ontwikkeling van bedrijfstoepassingen \\ (B-KUL-D0I60A)}
+
+\newcommand{\theauthors}{Jonas Devlieghere}
+\newcommand{\thecontributors}{Ben Lefevere \\ Michiel Meersmans \\ Tim Van den Eynde}
+\newcommand{\theprofs}{Monique Snoeck \\ Guido Dedene}
+
+\date{\today}
+\author{\theauthors}
+
+\newenvironment{indented}
+{\begin{list}{}%
+         {\setlength{\leftmargin}{10mm}}%
+         \item[]%
+}
+{\end{list}}
+
+\newenvironment{ex}[1]
+{\begin{tabular}{|l}
+\textbf{\scshape{voorbeeld}}: \textit{#1} \\ \begin{minipage}{\textwidth} \vspace{3mm}}
+{\end{minipage} \end{tabular} \vspace*{3mm}}
+\newcommand{\imp}[1]{\textbf{{#1}}\index{{#1}}}
+
+
+\begin{document}
+
+\frontmatter
+\subfile{subfiles/titlepage.tex}
+
+\tableofcontents
+\subfile{subfiles/preface.tex}
+
+\mainmatter
+\chapter{Algemeen kader}
+\subfile{subfiles/algemeen.tex}
+
+\chapter{Static Business Modelling}
+Statisch modelleren geeft een tijdsonafhankelijk beeld van het systeem. Dit wil zeggen dat hier  structuren worden besproken die aanwezig zijn in het probleemdomein.
+
+\section{Wat is modelleren}
+\subfile{subfiles/static/modelleren.tex}
+
+
+\section{Engineering Perspective}
+\subfile{subfiles/static/engineering.tex}
+
+\section{Modelleringstaal}
+\subfile{subfiles/static/modelleringstaal.tex}
+
+\section{Speciale vormen van associaties}
+\subfile{subfiles/static/associaties.tex}
+
+
+\chapter{Dynamic Business Modelling}
+Statisch modelleren geeft in tegenstelling tot static modeling wel een tijdsafhankelijk beeld van het systeem. Het beschrijft het gedrag van het systeem doorheen de tijd.
+
+\section{Dynamische diagrammen UML}
+\subfile{subfiles/dynamic/uml.tex}
+
+\section{Use Case diagrammen}
+\subfile{subfiles/dynamic/usecase.tex}
+
+\section{Toestandsdiagrammen}
+\subfile{subfiles/dynamic/toestandsdiagrammen.tex}
+
+\section{Interactie tussen bedrijfsobjecten}
+\subfile{subfiles/dynamic/interactie.tex}
+
+\section{Object-Event tabel}
+\subfile{subfiles/dynamic/oetabel.tex}
+
+\chapter{Systeemanalyse}
+Systeemanalyse is het interdisciplinair proces tussen informatica en bedrijfskunde dat gericht is op het analyseren van systemen. In de inleiding hebben we in grote lijnen al aangehaald welke activiteiten dit inhoud.
+
+\section{Requirements versus specifications}
+\subfile{subfiles/systeem/reqspec.tex}
+
+\section{Plaats van bedrijfsmodelleren in systeemanalyse}
+\subfile{subfiles/systeem/bedrijfsmodelleren.tex}
+
+\section{Patterns}
+\subfile{subfiles/systeem/patterns.tex}
+
+
+\section{Kwaliteitscontrole}
+\subfile{subfiles/systeem/kwaliteitscontrole.tex}
+
+\backmatter
+\printindex
+
+\end{document}
+

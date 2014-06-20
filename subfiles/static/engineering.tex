@@ -1,0 +1,110 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\subsection{Het probleem}
+De rede dat we dergelijk \imp{artefact} bouwen is dat het een oplossing is voor een probleem. Het is de taak van de analist om te onderzoeken welk probleem moet opgelost worden. Hiervoor worden \imp{sleutelgebruikers} ge\"interviewd.
+
+\begin{indented}
+Gezien we geen gebruikers ter onzer beschikking hebben in deze cursus worden problemen aangereikt onder de vorm van een \imp{use case}.
+\end{indented}
+\noindent
+De informatie waarop de analist zich baseert heeft een bepaald karakter. De \imp{use case} heeft het eerstgenoemde karakter.
+\begin{description}
+	\item[Exemplaristisch karakter] De gebruiker geeft een voorbeeld van hoe het systeem zal moeten werken.
+	\item[Prototypisch karakter] De gebruiker geeft een algemeen geldende beschrijving van de gewenste functionaliteit.
+\end{description}
+\begin{ex}{exemplaristische use case}
+Ik wens een systeem dat mij toelaat om $1+1$ te berekenen. \\
+Ik wens een systeem dat mij toelaat om $2+2$ te berekenen. \\
+Ik wens een systeem dat mij toelaat om $5+5$ te berekenen.
+\end{ex}
+\\\\
+Een goed systeem is in staat \textbf{alle} exemplaristische use cases te ondersteunen. Een ideaal systeem is bovendien in staat om alle toekomstige uses cases ook te ondersteunen.
+
+\subsection{De oplossing}
+Nu er kennis is van het probleem, zullen we denken aan de oplossing. Hiervoor maken we een schets of plan van hoe die oplossing er uit zal zien, wat we het \imp{model} noemen. Dit model heeft twee functies.
+
+\begin{itemize}
+	\item \textbf{Probleemdomein beschrijven:} Enerzijds moet het model de noden van de gebruiker kunnen voorstellen. Dit is immers een onderdeel van zowel het probleem als de oplossing.
+	\item \textbf{Oplossing beschrijven:} Anderzijds willen we graag dat het model een blauwdruk vormt voor de oplossing.
+\end{itemize}
+\noindent
+
+\subsection{Het lastenboek}
+In deze cursus ligt de nadruk op het correct beschrijven van het probleemdomein. Hiervoor nemen we het perspectief in van de opdrachtgever of eindgebruiker. Dit komt overeen met het \imp{lastenboek}.
+
+\begin{description}
+	\item[Het lastenboek] Het lastenboek beschrijft alle vereisten die de opdrachtgever heeft ten aanzien van het te bouwen systeem.
+\end{description}
+De vereisten vallen uiteen in twee categorie\"en:
+\begin{description}
+	\item[Functionele vereisten] Deze beschrijven \textbf{wat} het systeem moet kunnen vanuit het perspectief van de eindgebruiker.
+	\item[Niet-functionele vereisten] Deze beschrijven \textbf{de manier} waarop iets moet worden gerealiseerd. Typisch in termen van kwaliteit of performantie.
+\end{description}
+\begin{ex}{functionele vereisten}
+\begin{itemize}
+	\item De mogelijkheid om gegevens te kunnen opvragen
+	\item Mogelijkheid tot het afdrukken van rapporten
+\end{itemize}
+\end{ex}
+\\
+\begin{ex}{niet-functionele vereisten}
+\begin{itemize}
+	\item Responstijd moet niet meer dan 5 ms bedragen
+	\item GUI moet voldoen aan \textit{any surfer labe}
+\end{itemize}
+\end{ex}
+\\
+De focus ligt in deze cursus op het in kaart brengen van de \imp{functionele vereisten}. Hoewel dezelfde notaties als voor het \imp{systeemontwerp} (dus het model van de oplossing) gebruiken, wordt gebruikt, gaat de aandacht in de eerste plaats naar het modelleren van het probleem. Dit omdat de kwaliteit van het lastenboek van \imp{primoridaal belang} is.\\
+\\
+Een goed begrip van het probleem domein is op twee manieren belangrijk:
+
+\begin{itemize}
+	\item Het draagt bij tot de kwaliteit van het lastenboek
+	\item Het verwerven van inzicht in het probleemdomein biedt de mogelijkheid tot het voorstellen van mogelijke verbeteringen.
+\end{itemize}
+
+\subsection{Model van het probleemdomein}
+Het model van het probleemdomein beschrijf de \imp{universe of discourse} op een prototypische manier. Het is een abstracte beschrijving die geldt voor de feiten in het domein. Er zijn twee niveau's van denken:
+\begin{itemize}
+	\item \textbf{Level 1: Het modelniveau}
+	\begin{itemize}
+		\item Een persoon
+		\item Een product
+		\item Een opleidingsonderdeel
+	\end{itemize}
+	\item \textbf{Level 0: Het voorbeeldniveau}
+	\begin{itemize}
+		\item Jan, Piet, Els
+		\item Intel Core i5
+		\item Ontwikkeling van bedrijfstoepassingen
+	\end{itemize}
+\end{itemize}
+\textbf{Modelleren is abstraheren:} het is de overgang maken \imp{level 0} $\rightarrow$ \imp{level 1}
+\section{Mathematical Perspective}
+\subsection{Abstractie}
+Het onderscheid tussen de levels kan in de wiskunde gemaakt worden aan de hand van verzamelingen:
+\begin{itemize}
+	\item \textbf{Level 0:} de elementen van de verzameling
+	\item \textbf{Level 1:} de definitie van de verzameling
+\end{itemize}
+\begin{ex}{levels als verzamelingen}
+$\textrm{PERSOON} = \{p \textrm{ }|\textrm{ } p \textrm{ is een persoon}\}$\\
+$\textrm{PERSOON} = \{\textrm{Jan, Piet, Els}\}$
+\end{ex}
+\\
+Het modelleren gebeurt door verzamelingen te defini\"eren en de eigenschappen van de elementen in die verzameling te beschrijven.
+
+
+\subsection{Validatie}
+We kunnen het model op verschillende manieren valideren:
+\begin{itemize}
+	\item \textbf{Instanti\"eren:} kunnen we elementen vinden die tot de verzameling behoren? Kloppen de verbanden die we hebben gedefinieerd met de werkelijkheid? Maken de overgang level 1 $\rightarrow$ level 0
+	\begin{description}
+		\item[= externe validatie:] controle of het model een correcte weergave is van de werkelijkheid.
+	\end{description}
+	\item \textbf{Redeneren:} axioma's en stelling toepassen uit de verzamelingsleer.
+		\begin{description}
+		\item[= interne validatie:] controle of het model op zichzelf consistent is.
+	\end{description}
+\end{itemize}
+\end{document}

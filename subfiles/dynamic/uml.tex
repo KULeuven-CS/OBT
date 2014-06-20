@@ -1,0 +1,73 @@
+\documentclass[../../main.tex]{subfiles}
+\begin{document}
+Binnen UML worden volgende diagrammen gebruikt bij het \imp{dynamisch modelleren}:
+\begin{itemize}
+
+	\item \textbf{Use Case Diagrammen} \\ Deze beschrijven de manier waarop een gebruiker het systeem wenst te gebruiken. Het beschrijft dus problemen waar de gebruiker een oplossing voor wenst.
+	\begin{itemize}
+		\item Beschrijft het probleem: functionele vereisten
+		\item Kan niet gebruikt worden voor model van oplossing \\ (omvat immers geen toekomstige use cases)
+	\end{itemize}
+	\item \textbf{Sequentie Diagram} \\ Beschrijft hoe objecten in het systeem samenwerken.
+	\begin{itemize}
+		\item Beschrijf de oplossing
+	\end{itemize}
+	\item \textbf{Toestandsdiagrammen} \\ Deze worden gebruikt om de \imp{toestanden} waarin een object zich kan bevinden te beschrijven. Het legt ook vast wanneer welke overgangen mogelijk zijn.
+	\begin{itemize}
+		\item Beschrijven probleemdomein
+		\item Beschrijven oplossing
+	\end{itemize}
+	\item \textbf{Activiteitsdiagrammen} \\ Procesgerichte beschrijvingen om het gedrag van een systeem, bestaande uit meerdere objecten, te modelleren.
+	\begin{itemize}
+		\item Workflow modelleren
+		\item Concretiseren use case
+	\end{itemize}
+	\item \textbf{Interactiediagrammen} \\ Deze worden gebruikt voor het modelleren van de interacties tussen de objecten.
+	\begin{itemize}
+		\item Gebonden aan OOP
+		\item Beschrijven oplossingsdomein
+		\item Om ze toch te gebruiken in probleemdomein: \imp{Object-Event tabel}
+	\end{itemize}
+\end{itemize}
+
+
+\subsection{Positioneren technieken}
+\begin{tabular}{|l|c|c|c|}
+\hline
+ & \multicolumn{2}{c|}{Problem Domain} & Solution Domain \\
+\hline
+ & Domain Knowledge (*) & IS FUnctionality (**) & (***) \\
+\hline
+Class Diagram & Y & Y & Y \\
+\hline
+Use Case Diagram & • & Y & Y \\
+\hline
+Sequence Diagram & • & • & Y \\
+\hline
+Finite State Diagram & Y & • & Y \\
+\hline
+Activity Diagram (BPMN) & Y & • & Y \\
+\hline
+\end{tabular}
+\begin{description}
+	\item \textbf{*}: Rij 2 van raamwerk Zachman
+	\item \textbf{**}: Rij 3 van raamwerk Zachman
+	\item \textbf{***}: Rij 4,5,6 van raamwerk Zachman
+\end{description}
+\subsection{Diagramtechnieken in deze cursus}
+\begin{itemize}
+	\item \textbf{Domeinmodel}
+	\begin{itemize}
+		\item Klassendiagrammen
+		\item Toestandsdiagrammen
+	\end{itemize}
+	\item \textbf{Functionaliteit}
+	\begin{itemize}
+		\item Use cases
+	\end{itemize}
+	\item \textbf{Ontwerp}
+	\begin{itemize}
+		\item Sequentie- en interactiediagrammen
+	\end{itemize}
+\end{itemize}
+\end{document}

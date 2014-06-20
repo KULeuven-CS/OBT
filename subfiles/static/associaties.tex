@@ -1,0 +1,136 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+In plaats van relaties te beschouwen als afbeeldingen, kunnen deze ook worden gemodelleerd als een \imp{productverzameling} van twee of meerdere verzamelingen.\\
+\\
+Een relatie $R$ tussen een klasse $A$ en een klasse $B$ wordt gedefinieerd als:
+\begin{equation*}
+\boxed{R \subseteq A \times B}
+\end{equation*}
+De overeenkomstige afbeelding is dan:
+\begin{equation*}
+\boxed{r:A \rightarrow B: a \mapsto f(a) \textrm{ met } b \in f(a) \Leftrightarrow (a,b) \in R}
+\end{equation*}
+Het karakter:
+\begin{itemize}
+	\item \textbf{Verplicht:} $r \textrm{ is verplicht} \Leftrightarrow \forall a \in A: \exists b \in B: (a,b) \in R$
+	\item \textbf{Kardinaliteit \'e\'en:} $r \textrm{ heeft kardinaliteit 1} \Leftrightarrow |\{ b \in B | (a,b) \in R \}| \leq 1$
+\end{itemize}
+Deze manier van defini\"eren maakt duidelijk dat een element slechts \'e\'enmaal kan voorkomen in een relatie. Algemeen kunnen we zeggen dat elk element $(a,b)$ in een productverzameling $A \times B$ uniek ge\"identificeerd wordt door middel van $a$ en $b$. \\
+\\
+Het is wel toegelaten twee verbanden (met een verschillende naam) te leggen tussen twee dezelfde klassen $A$ en $B$.
+\subsection{N-aire associaties}
+Met bovenstaande definitie is het eenvoudig verbanden te leggen tussen meer dan twee klassen. Het is soms zo dat het niet mogelijk is een verband tussen meerdere klassen weer te geven aan de hand van  verschillende \imp{binaire relaties}. We kunnen dan gebruik maken van een \imp{N-aire relatie}. \\
+\\
+Gegeven een verband $R \subseteq (A_1 \times A_2 \times ... \times A_n)$. We defini\"eren voor elke $A_i$ een verband $r_i$ als volgt:
+\begin{equation*}
+\boxed{r_i : A_i \rightarrow A_1 \times ... \times A_{i-1} \times A_{i+1} \times ... \times A_n: a_i \mapsto (a_1, ... , a_{i-1}, a_{i+1} , ... , a_n) }
+\end{equation*}
+Het karakter:
+\begin{itemize}
+	\item \textbf{Verplicht:} \\
+	$r \textrm{ is verplicht} \Leftrightarrow \forall a_i \in A_i: \exists  (a_1, ... , a_{i-1}, a_{i+1} , ... , a_n) \in (A_1 \times ... \times A_{i-1} \times A_{i+1} \times ... \times A_n)$
+	\item \textbf{Kardinaliteit \'e\'en:} \\
+	 $r \textrm{ heeft kardinaliteit 1} \Leftrightarrow \{ (A_1 \times ... \times A_{i-1} \times A_{i+1} \times ... \times A_n) | (a_1, ... , a_{i-1}, a_{i+1} , ... , a_n) \in R \}| \leq 1$
+\end{itemize}
+
+
+\begin{ex}{ternaire relatie}
+We beschouwen het verband tussen \textit{product}, \textit{levernacier} en \textit{project}: een leverancier levert een bepaald product voor een bepaald project. Veronderstel dat we dit modelleren aan de hadn van drie binaire relaties:
+\begin{itemize}
+	\item Leverancier-\textit{levert}-product
+	\item Leverancier-\textit{levert\_voor}-project
+	\item Project-\textit{gebruikt}-product
+\end{itemize}
+Deze verbanden zijn onvoldoende omdat:
+\begin{itemize}
+	\item Met de combinatie \textit{project-leverancier} komen mogelijks meerdere producten overeen
+	\item Ook met de combinatie \textit{project-product} kunnen meerdere leveranciers overeenkomen
+	\item Tenslotte kan ook met combinatie \textit{leverancier-product} meerdere projecten overeenkomen
+\end{itemize}
+Het is niet mogelijk het probleemdomein correct weer te geven op deze manier. Met een ternaire relatie kunnen we dit wel. Het verband:\\
+\begin{equation*}
+\boxed{\textrm{gebruikt} : \textrm{PROJECT} \rightarrow \textrm{LEVERANCIER} \times \textrm{PRODUCT}}
+\end{equation*}
+modelleert welk product van een bepaalde leverancier werd gebruikt in welk project.
+\end{ex}
+\subsection{Associaties als klasse}
+Het is mogelijk dat een verband tussen twee klassen zelf als een klasse wordt gemodelleerd. Zie hiervoor $4.4.7$ in het handboek.\\
+In volgende situaties kiezen we om de associatie als klasse voor te stellen:
+\begin{itemize}
+	\item Soms geeft de identiteit van de deelnemende objecten geen unieke identificatie van de relatie, en zijn bijkomende attributen nodig. Wanneer een verband eigen karakteristieken nodig heeft voor het uniek identificeren van de elementen in de associatie, modelleert men deze als een klasse.
+	\item Soms zijn de deelnemende objecten wel voldoende om het relatie-object uniek te bepalen, maar zijn er desondanks nuttige attributen voor de associatie. Ook dan modelleren we deze als een klasse.
+\end{itemize}
+Bovendien wordt er standaard gekozen om een associatie voor te stellen als klasse in volgende gevallen:
+\begin{itemize}
+	\item \textbf{Many-to-many verbanden}
+	\begin{itemize}
+		\item Afkomstig van normalisatie bij relationele gegevensbanken.
+		\item Oorspronkelijke deelnemende klassen zijn niet altijd voldoende als identificatie
+		\item Altijd nagaan of er attributen moeten worden toegevoegd  voor deze uniciteit
+	\end{itemize}
+	\item \textbf{N-aire verbanden met $N > 2$}
+	\begin{itemize}
+		\item Eveneens afkomstig uit databankontwerp
+		\item Enkel binaire verbanden in relationeel model
+	\end{itemize}
+\end{itemize}
+Het invoeren van een \imp{association-as-class} maakt de modelleringstaal rijker naar introduceert ook een vorm van complexiteit. Omdat de toegevoegde waarde vanuit ons standpunt klein is, worden dergelijke klassen opgenomen als \textit{volwaardige klassen} in het schema.
+\subsection{Aggregatie en compositie}
+\begin{description}
+	\item[Aggregatie] Aggregaties zijn een speciaal type associaties waarin de twee deelnemende klassen geen gelijkwaardige status hebben, maar een \textit{geheel-deel} relatie vormen. Een aggregatie beschrijft hoe de klasse die de rol van geheel heeft, samengesteld wordt uit de andere klassen, die de rol van deel hebben. Voor aggregaties heeft de klasse die optreedt als geheel, altijd de multipliciteit \"e\"en.\\
+	(Worden voorgesteld in UML door transparante ruit.)
+	\item[Compositie] Composities zijn associaties die zeer sterke aggregaties vertegenwoordigen. Dit betekent dat composities evengoed geheel-deel relaties vormen, maar de relatie is zo sterk dat de delen niet op zichzelf kunnen bestaan. Zij bestaan slechts binnen het geheel, en als het geheel vernietigd wordt, gaan de delen er ook aan.\\
+	(Worden voorgesteld in UML door ingekleurde ruit.)
+\end{description}
+Het gebruik van dergelijke structuren wordt afgeraden.
+\section{Overerving}
+Zie hiervoor ook $4.2.8$ in het handboek.\\
+\subsection{Definitie}
+Wanneer verschillende klassen sterke gelijkenissen vertonen kunnen we proberen die te verzamelen in een overkoepelende klasse. De oorspronkelijke klassen erven dan de gemeenschappelijke eigenschappen over en kunnen de definitie ervan eventueel verfijnen.
+\begin{itemize}
+	\item Vooral belangrijk voor het vermeiden van duplicatie van code bij OOP.
+	\item Nauw verwant met concept van taxonomie
+\end{itemize}
+\subsubsection{Wanneer wel gebruiken}
+Omdat het model ook het oplossingsdomein moet omschrijven en we dus later willen omzetten naar code, moeten we de principes omtrent overerving op het niveau van programmacode respecteren.  We gebruiken dit principe daarom enkel als:
+\begin{itemize}
+	\item Er geen overlappende subklassen zijn
+	\item Elementen gedurende volledige levensduur tot dezelfde subklasse behoren.
+\end{itemize}
+\subsubsection{Wanneer niet gebruiken}
+Indien de elementen wel van subklasse veranderen, kunnen deze best worden gemodelleerd aan de hand van rollen. Gedragsaspecten worden immers beter gemodelleerd aan de hand van operaties en toestanden.
+\\\\
+Algemeen zijn volgende redenen \textbf{niet goed} om subklassen te definieren:
+\begin{itemize}
+	\item Deelnemen aan verband met een andere klasse
+	\item Opdelen van klassen in functie van de waarde van een attribuut
+	\item Opdelen van klassen in functie van de toestand van het object
+\end{itemize}
+In al deze situaties zouden elementen van subklassen kunnen veranderen.
+\subsection{Overerving associaties}
+De definitie van een \imp{generalisatie-specialisatieverband} tussen twee klassen impliceert dat de gespecialiseerde klasse alle eigenschappen van de generalisatieklasse overerft.\\
+\\
+De specialisatie erft dus zowel de attributen als de associatie van de generalisatieklasse.
+\section{OCL Constraints}
+Schema's kunnen beperkingen opleggen waar de gegevens aan moeten voldoen.  Dergelijke beperkingen of \imp{constaints} vormen een krachtig instrument om de correctheid van het schema te bewaken.
+\\\\
+\noindent
+\begin{ex}{schemabeperkingen}
+We legden al beperkingen op met het verplicht maken van associaties. Een gift kon niet geregistreerd worden als die niet verbonden was met een persoon die deze gift deed.
+\end{ex}
+\\
+UML laat toe beperkingen op te leggen die niet omvat kunnen worden in het schema. Het formuleren van dergelijke constraints gebeurt aan de hand van \imp{OCL}, de \imp{Object Constraint Language}.\\
+\\
+Zie hiervoor ook  hoofdstuk 7 in het handboek.\\
+
+\subsection{Tips bij het maken van oefeningen}
+
+\begin{enumerate}
+	\item Geef de context, een klassenaam die in het schema voorkomt
+	\item Geef de operatie waarop een \imp{preconditie} van toepassing is
+	\item Controleer of het resultaat een Booleaanse waarde geeft
+	\item Controleer de kardinaliteiten van de associaties waarlangs wordt genavigeerd
+	\item Zoek een goed startpunt voor navigatie
+	\item Controleer de opgave voor woorden zoals \textbf{een} welke verschillen van \textbf{alle}
+\end{enumerate}
+\end{document}
