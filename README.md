@@ -1,7 +1,7 @@
 OBT
 ===
 
-(Ontwikkeling van bedrijfstoepassingen (B-KUL-D0I60A))[https://onderwijsaanbod.kuleuven.be/syllabi/n/D0I60AN.htm]
+[Ontwikkeling van bedrijfstoepassingen (B-KUL-D0I60A)](https://onderwijsaanbod.kuleuven.be/syllabi/n/D0I60AN.htm)
 
 ## PDF
 
